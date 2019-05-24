@@ -38,7 +38,7 @@ class ExtractModProfissional extends Command
     public function handle()
     {
         $url = 'http://cnes2.datasus.gov.br/Mod_Profissional_XLS.asp?VCo_Unidade=2408102653982';
-        $tmpfname = database_path('datas/Mod_Profissional.xls');
+        $tmpfname = database_path('data/Mod_Profissional.xls');
         file_put_contents(
             $tmpfname,
             file_get_contents($url)
