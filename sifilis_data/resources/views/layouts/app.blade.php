@@ -1,60 +1,46 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.base')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('body')
+    <header class="main-header">
+        <a href="/" class="logo">
+            <b>Sí</b>filis
+        </a>
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{{ asset(Auth::user()->avatar) }}" class="user-image">
+                            <span class="hidden-xs valign-middle inline-block" style="line-height: 1">
+                                {{ Auth::user()->name }}
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+                                <p>
+                                    {{ Auth::user()->name }}
+                                    <br>
+                                    <span class="small">
+                                        Administrador
+                                    </span>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </p>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    {{--<a href="{{ route('perfil') }}" class="btn btn-default btn-flat">Meus Dados</a>--}}
+                                </div>
+                                <div class="pull-right">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -66,15 +52,41 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
-                    </ul>
-                </div>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
+    </header>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-</body>
-</html>
+@section('sidebar')
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            @include('layouts.menu')
+        </section>
+    </aside>
+@show
+
+<div class="content-wrapper">
+    @if(isset($success)) <p class="bg-success">{{ $success }}</p> @endif
+    @include("partials.system_alerts")
+    <section class="content-header">
+        @section('header')
+            <h1>@yield('title', 'Sífilis')</h1>
+        @show
+    </section>
+
+    <section class="content">
+        @yield('content')
+    </section>
+</div>
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <strong>Versão</strong> 0.0.1
+        </div>
+    </footer>
+@endsection
+@push('scripts')
+
+@endpush

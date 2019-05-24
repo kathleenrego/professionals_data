@@ -1,0 +1,71 @@
+
+.avatar-container {
+    position: relative;
+}
+
+.avatar-container:before {
+    display: block;
+    content: " ";
+    width: 100%;
+    padding-top: 100%;
+}
+
+.avatar-container-content {
+    background-position-x: 50%;
+    position: absolute;
+    border: 3px solid #cfcfcf;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.avatar-container-content.avatar-container-content-cover {
+    background-size: cover;
+}
+
+.avatar-container-content.avatar-container-content-contain {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+}
+
+.avatar-container-content.avatar-container-content-circle {
+    border-radius: 50%;
+}
+
+.avatar-container-content:hover {
+    cursor: pointer;
+}
+
+.avatar-container-content:hover:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    content: "";
+}
+
+.avatar-container-content.avatar-container-content-circle:hover:before {
+    border-radius: 50%;
+}
+
+.avatar-container-content:hover:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    margin-left: -47px;
+    margin-top: -15px;
+    padding: 5px 10px;
+    background: white;
+    border-radius: 3px;
+    font-weight: bold;
+    text-align: center;
+    content: "Enviar foto";
+}
