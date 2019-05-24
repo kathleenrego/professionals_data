@@ -1,0 +1,38 @@
+
+<html>
+<head>
+	<title>Ficha Profissionais</title>
+</head>
+
+<br>        
+<body id="dt_example">
+			<P align=center>Consulta Estabelecimento - Modulo Profissional - Profissionais por Estabelecimento</P>
+			<table cellpadding="1" cellspacing="1" id="example">
+				<thead>
+				     <tr> 
+						<td colspan=9>&nbsp;</td>
+						<td colspan=3 align=center>Vinculo Empregatício</td>
+						<td colspan=3>&nbsp;</td>
+					 </tr>
+					<tr> 
+						<th>Nome</th>
+						<th>Dt.Entrada</th>
+						<th>CNS</th>
+						<th>Dt.<br />Atribuição</th>
+						<th>CBO</th>
+						<th>CH Outros</th>
+						<th>CH Amb.</th>
+						<th>CH Hosp.</th>
+						<th>Total</th>
+						<th>SUS</th>
+						<th>Vinculação</th>
+						<th>Tipo</th>
+					    <th>Subtipo</th>
+					    <th>Comp.<br>Desativação</th>
+					    <th>Situação</th>
+					    <th>Portaria 134</th>
+					</tr>
+				</thead>
+ <tbody></tbody></Table>
+</body>
+</html>
