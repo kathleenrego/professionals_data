@@ -13,7 +13,7 @@ class Profissional extends Model
      */
     protected $fillable = [
         'nome', 'cns', 'data_atribuicao','cbo_id','vinculo_id',
-        'tipo_id','carga_horaria','carga_horaria',
+        'tipo_id','carga_horaria','sus',
     ];
 
 }
