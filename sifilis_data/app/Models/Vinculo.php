@@ -16,11 +16,37 @@ class Vinculo extends Model
         'tipo_id','carga_horaria', 'profissional_id',
     ];
 
+    protected $casts = [
+        'data_atribuicao' => 'date:d/m/Y',
+    ];
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function profissionais()
+    public function vinculacao()
     {
-        return $this->hasMany(Profissional::class,'vinculo_id', 'id');
+        return $this->belongsTo(Vinculacao::class, 'vinculacao_id','id');
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tipo()
+    {
+        return $this->belongsTo(Tipo::class, 'tipo_id','id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function profissional()
+    {
+        return $this->belongsTo(Profissional::class, 'profissional_id','id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function cbo()
+    {
+        return $this->belongsTo(Cbo::class, 'cbo_id','id');
+    }
+
 }

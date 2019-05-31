@@ -111,8 +111,8 @@ return [
         'NAVEGAÇÃO',
 
         [
-            'text' => 'Profissionais',
-            'url'  => '/projetos',
+            'text' => 'Vínculos',
+            'url'  => '/vinculos',
             'icon' => 'users',
         ],
         [

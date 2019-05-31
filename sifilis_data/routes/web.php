@@ -24,3 +24,20 @@ Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function () {
+
+    Route::resource('vinculos', 'VinculoController');
+
+    Route::group(['prefix' => 'api'], function () {
+        Route::get('vinculos', 'VinculoController@select')
+            ->name('vinculos.select');
+        Route::get('cbos', 'VinculoController@selectCbos')
+            ->name('cbos.select');
+        Route::get('tipos', 'VinculoController@selectTipos')
+            ->name('tipos.select');
+        Route::get('vinculacoes', 'VinculoController@selectVinculacoes')
+            ->name('vinculacoes.select');
+    });
+
+});
