@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class, // [1]
 
         /*
          * Application Service Providers...
@@ -227,6 +229,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class, // [2]
 
     ],
 
