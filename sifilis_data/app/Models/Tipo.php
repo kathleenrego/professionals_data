@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,14 +12,14 @@ class Tipo extends Model
      * @var array
      */
     protected $fillable = [
-        'nome',
+        'tipo', 'subtipo'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function profissionais()
+    public function vinculos()
     {
-        return $this->hasMany(Profissional::class,'tipo_id', 'id');
+        return $this->hasMany(Vinculo::class,'tipo_id', 'id');
     }
 }

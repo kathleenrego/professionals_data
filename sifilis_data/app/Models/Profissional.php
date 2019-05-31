@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,8 +19,7 @@ class Profissional extends Model
      * @var array
      */
     protected $fillable = [
-        'nome', 'cns', 'data_atribuicao','cbo_id','vinculo_id',
-        'tipo_id','carga_horaria','sus',
+        'nome', 'cns', 'sus',
     ];
 
     /**
@@ -30,5 +29,12 @@ class Profissional extends Model
      */
     protected $dates = ['data_atribuicao'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vinculos()
+    {
+        return $this->hasMany(Vinculo::class,'profissional_id', 'id');
+    }
 
 }

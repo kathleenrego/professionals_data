@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,8 @@ class Vinculo extends Model
      * @var array
      */
     protected $fillable = [
-        'nome',
+        'data_atribuicao','cbo_id','vinculacao_id',
+        'tipo_id','carga_horaria', 'profissional_id',
     ];
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVinculosTable extends Migration
+class CreateVinculacoesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateVinculosTable extends Migration
      */
     public function up()
     {
-        Schema::create('vinculos', function (Blueprint $table) {
+        Schema::create('vinculacoes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateVinculosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vinculos');
+        Schema::dropIfExists('vinculacoes');
     }
 }

@@ -167,6 +167,7 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class, // [1]
 
         /*
          * Application Service Providers...
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class, // [2]
 
     ],
 

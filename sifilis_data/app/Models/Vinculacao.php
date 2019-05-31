@@ -1,11 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cbo extends Model
+class Vinculacao extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'vinculacoes';
     /**
      * The attributes that are mass assignable.
      *
@@ -18,9 +24,8 @@ class Cbo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function profissionais()
+    public function vinculos()
     {
-        return $this->hasMany(Profissional::class,'cbo_id', 'id');
+        return $this->hasMany(Vinculo::class,'vinculacao_id', 'id');
     }
-
 }
