@@ -15,4 +15,12 @@ class Cbo extends Model
         'nome',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function profissionais()
+    {
+        return $this->hasMany(Profissional::class,'cbo_id', 'id');
+    }
+
 }

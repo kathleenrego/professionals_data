@@ -14,4 +14,12 @@ class Tipo extends Model
     protected $fillable = [
         'nome',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function profissionais()
+    {
+        return $this->hasMany(Profissional::class,'tipo_id', 'id');
+    }
 }
