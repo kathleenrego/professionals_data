@@ -33,17 +33,20 @@ class ProfissionaisImport implements ToCollection
 
                 $profissional = Profissional::firstOrCreate(
                         ['nome' => $row[0]],
-                        ['cns' => $row[2],
-                        'sus' => $row[9] == 'SIM' ? true : false,
-                ]);
+                        [
+                            'cns' => number_format($row[2], 0,'', ''),
+                            'sus' => $row[9] == 'SIM' ? true : false,
+                        ]
+                );
 
-                Vinculo::create(
+                Vinculo::query()->updateOrCreate(
                     [
                         'profissional_id' => $profissional->id,
-                        'carga_horaria' => preg_replace("/[^0-9]/", "",$row[8]),
                         'tipo_id' => $tipo->id,
                         'vinculacao_id' => $vinculacao->id,
                         'cbo_id' => $cbo->id,
+                    ],[
+                        'carga_horaria' => preg_replace("/[^0-9]/", "",$row[8]),
                         'data_atribuicao' => $row[3] ? Carbon::createFromFormat('d/m/Y', $row[3]) : null,
                     ]
                 );
