@@ -14,29 +14,33 @@ class ProfissionaisImport implements ToCollection
 {
     public function collection(Collection $rows)
     {
-        foreach ($rows as $row)
-        {
-            $cbo = Cbo::firstOrCreate([
-                'nome' => substr($row[4], 9),
-            ]);
 
-            $vinculo = Vinculo::firstOrCreate([
-                'nome' => $row[10],
-            ]);
+        foreach ($rows as $key => $row) {
+            if ($key >= 4) {
 
-            $tipo = Tipo::firstOrCreate([
-                'nome' => $row[11],
-            ]);
+                $cbo = Cbo::firstOrCreate([
+                    'nome' => substr($row[4], 9),
+                ]);
 
-            Profissional::firstOrCreate([
-                ['nome' => $row[0]],
-                [
-                    'cns' => $row[2],
-                    'data_atribuicao' => Carbon::createFromFormat('d/m/Y', $row[3]),
-                    'carga_horaria' => substr($row[8], 0,2),
-                    'sus' => $row[9] == 'SIM' ? true : false,
-                ]
-            ]);
+                $vinculo = Vinculo::firstOrCreate([
+                    'nome' => $row[10],
+                ]);
+
+                $tipo = Tipo::firstOrCreate([
+                    'nome' => $row[11],
+                ]);
+
+                Profissional::create([
+                        'nome' => $row[0],
+                        'cns' => $row[2],
+                        'carga_horaria' => preg_replace("/[^0-9]/", "",$row[8]),
+                        'sus' => $row[9] == 'SIM' ? true : false,
+                        'tipo_id' => $tipo->id,
+                        'vinculo_id' => $vinculo->id,
+                        'cbo_id' => $cbo->id,
+                        'data_atribuicao' => $row[3] ? Carbon::createFromFormat('d/m/Y', $row[3]) : null,
+                ]);
+            }
         }
     }
 }

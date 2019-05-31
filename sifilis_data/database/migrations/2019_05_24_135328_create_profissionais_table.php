@@ -17,7 +17,7 @@ class CreateProfissionaisTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('cns');
-            $table->date('data_atribuicao');
+            $table->date('data_atribuicao')->nullable();
             $table->integer('cbo_id')->unsigned();
             $table->integer('vinculo_id')->unsigned();
             $table->integer('tipo_id')->unsigned();

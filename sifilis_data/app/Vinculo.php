@@ -14,4 +14,12 @@ class Vinculo extends Model
     protected $fillable = [
         'nome',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function profissionais()
+    {
+        return $this->hasMany(Profissional::class,'vinculo_id', 'id');
+    }
 }
