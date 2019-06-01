@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Cbos')
+@section('title', 'Vinculações')
 
 @section('content_header')
-    <h1>Cbos</h1>
+    <h1>Vinculações</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
                     <div class="box-header">
                         <h3 class="box-title"></h3>
                         <div class="pull-right box-tools">
-                            <a href="{{ route('cbos.create') }}" class="btn btn-primary">Novo Cbo</a>
+                            <a href="{{ route('vinculacoes.create') }}" class="btn btn-primary">Nova Vinculação</a>
                         </div>
                     </div>
                     <div class="row">
@@ -45,7 +45,7 @@
                 ordering: false,
                 autoWidth: true,
                 ajax:{
-                    url: "{{ route('cbos.json') }}",
+                    url: "{{ route('vinculacoes.json') }}",
                 },
                 language: {
                     url: "//cdn.datatables.net/plug-ins/1.10.13/i18n/Portuguese-Brasil.json"
@@ -57,8 +57,8 @@
                         data: "id",
                         render: function (data) {
                             return "<div class=\"btn-group-vertical\">\n" +
-                                "<a href=\"/cbos/" + data + "/edit\" class=\"btn btn-warning\" style=\"margin-top: 10px;\">Editar</a>\n" +
-                                "                <form style=\"border-radius: 0;margin-top: 10px;display: inline-block;\" class=\"btn-group\" action=\"/cbos/" + data + "\" method=\"post\">\n" +
+                                "<a href=\"/vinculacoes/" + data + "/edit\" class=\"btn btn-warning\" style=\"margin-top: 10px;\">Editar</a>\n" +
+                                "                <form style=\"border-radius: 0;margin-top: 10px;display: inline-block;\" class=\"btn-group\" action=\"/vinculacoes/" + data + "\" method=\"post\">\n" +
                                 "                   {!! addslashes(csrf_field()) !!}" +
                                 "                   {!! addslashes(method_field('DELETE')) !!}" +
                                 "                <button type=\"submit\" class=\"btn btn-danger\" >Excluir</button>\n" +
