@@ -58,6 +58,7 @@
                                         <th>Vinculação</th>
                                         <th>Tipo</th>
                                         <th>Subtipo</th>
+                                        <th>Opções</th>
                                     </tr>
 
                                     </thead>
@@ -163,6 +164,15 @@
                     {data: "vinculacao"},
                     {data: "tipo"},
                     {data: "subtipo"},
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<div class=\"btn-group-vertical\">\n" +
+                                "                <a class=\"btn btn-info\" style=\"border-radius: 0;margin-top: 10px;\" href=\"/vinculos/" + data + "\">Ver</a>\n" +
+                                "<a href=\"/vinculos/" + data + "/edit\" class=\"btn btn-warning\" style=\"margin-top: 10px;\">Editar</a></div>";
+
+                        }
+                    },
                 ],
                 "columnDefs": [
                     {

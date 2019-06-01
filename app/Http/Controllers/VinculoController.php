@@ -17,9 +17,7 @@ class VinculoController extends Controller
      */
     public function index()
     {
-        return view('vinculos.index', [
-            'vinculos' => Vinculo::all(),
-        ]);
+        return view('vinculos.index');
     }
 
     /**
@@ -29,7 +27,7 @@ class VinculoController extends Controller
      */
     public function create()
     {
-        //
+        return view('vinculos.create');
     }
 
     /**
@@ -51,7 +49,9 @@ class VinculoController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('vinculos.show', [
+            'vinculo' => Vinculo::findOrFail($id),
+        ]);
     }
 
     /**
@@ -62,7 +62,9 @@ class VinculoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('vinculos.edit', [
+            'vinculo' => Vinculo::findOrFail($id),
+        ]);
     }
 
     /**
