@@ -27,14 +27,13 @@ class ProfissionaisImport implements ToCollection
                 ]);
 
                 $tipo = Tipo::firstOrCreate(
-                    ['tipo' => $row[11],],
-                    ['subtipo' => $row[12],
+                    ['nome' => $row[11],
                 ]);
 
                 $profissional = Profissional::firstOrCreate(
-                        ['nome' => $row[0]],
+                        [   'cns' => number_format($row[2], 0,'', ''),
+                            'nome' => $row[0]],
                         [
-                            'cns' => number_format($row[2], 0,'', ''),
                             'sus' => $row[9] == 'SIM' ? true : false,
                         ]
                 );

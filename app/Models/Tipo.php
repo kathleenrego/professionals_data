@@ -12,7 +12,7 @@ class Tipo extends Model
      * @var array
      */
     protected $fillable = [
-        'tipo', 'subtipo'
+        'nome'
     ];
 
     /**
