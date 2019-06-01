@@ -141,7 +141,7 @@
                 ordering: false,
                 autoWidth: true,
                 ajax:{
-                    url: "{{ route('vinculos.select') }}",
+                    url: "{{ route('vinculos.json') }}",
                     data: function (data) {
                         data.tipoSelect = tipo.val();
                         data.vinculacaoSelect = vinculacao.val();
