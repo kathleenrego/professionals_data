@@ -57,7 +57,6 @@
                                         <th>SUS</th>
                                         <th>Vinculação</th>
                                         <th>Tipo</th>
-                                        <th>Subtipo</th>
                                         <th>Opções</th>
                                     </tr>
 
@@ -163,7 +162,6 @@
                     {data: "sus"},
                     {data: "vinculacao"},
                     {data: "tipo"},
-                    {data: "subtipo"},
                     {
                         data: "id",
                         render: function (data) {

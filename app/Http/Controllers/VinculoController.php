@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cbo;
+use App\Models\Profissional;
 use App\Models\Tipo;
 use App\Models\Vinculacao;
 use App\Models\Vinculo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class VinculoController extends Controller
 {
@@ -38,7 +41,39 @@ class VinculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required|max:256',
+            'data_atribuicao' => 'required|date_format:"d/m/Y"',
+            'cbo' => 'required',
+            'tipo' => 'required',
+            'vinculacao' => 'required',
+            'cns' => 'required|numeric',
+            'sus' => 'required|numeric',
+            'carga_horaria' => 'required|numeric',
+        ]);
+
+
+        $profissional = Profissional::firstOrCreate(
+            [   'cns' => $request->get('cns')],
+            [
+                'nome' => $request->get('nome'),
+                'sus' => $request->get('sus'),
+            ]);
+
+        Vinculo::query()->updateOrCreate(
+            [
+                'profissional_id' => $profissional->id,
+                'tipo_id' => $request->get('tipo'),
+                'vinculacao_id' => $request->get('vinculacao'),
+                'cbo_id' => $request->get('cbo'),
+            ],[
+                'carga_horaria' => $request->get('carga_horaria'),
+                'data_atribuicao' => Carbon::createFromFormat('d/m/Y', $request->get('data_atribuicao')),
+            ]
+        );
+
+        return Redirect::route('vinculos.index')
+            ->with('success', 'O vínculo foi criado com sucesso.');
     }
 
     /**
@@ -64,6 +99,9 @@ class VinculoController extends Controller
     {
         return view('vinculos.edit', [
             'vinculo' => Vinculo::findOrFail($id),
+            'cbos' => Cbo::all(),
+            'vinculacoes' => Vinculacao::all(),
+            'tipos' => Tipo::all(),
         ]);
     }
 
@@ -76,7 +114,28 @@ class VinculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'data_atribuicao' => 'required|date_format:"d/m/Y"',
+            'cbo' => 'required',
+            'tipo' => 'required',
+            'vinculacao' => 'required',
+            'carga_horaria' => 'required|numeric',
+        ]);
+
+        $vinculo = Vinculo::findOrfail($id);
+
+        $vinculo->update(
+            [
+                'tipo_id' => $request->get('tipo'),
+                'vinculacao_id' => $request->get('vinculacao'),
+                'cbo_id' => $request->get('cbo'),
+                'carga_horaria' => $request->get('carga_horaria'),
+                'data_atribuicao' => Carbon::createFromFormat('d/m/Y', $request->get('data_atribuicao')),
+            ]
+        );
+
+        return Redirect::route('vinculos.index')
+            ->with('success', 'O vínculo foi editado com sucesso.');
     }
 
     /**
@@ -127,16 +186,30 @@ class VinculoController extends Controller
     public function selectTipos(Request $request)
     {
         $tipo = Tipo::when($request->has('q'), function($query) use ($request){
-            $query->where('tipo', 'LIKE', "%{$request->get('q')}%");
+            $query->where('nome', 'LIKE', "%{$request->get('q')}%");
         })->get();
 
         return response()->json([
             'results' => $tipo->map(function ($i) {
                 return [
                     'id' => $i->id,
-                    'text' => "{$i->tipo} ",
+                    'text' => "{$i->nome} ",
                 ];
             })
+        ]);
+
+    }
+    public function selectProfissionais(Request $request)
+    {
+        $profissional = Profissional::where('cns', $request->input('cns'))->get();
+
+        return Response()->json([
+            'nome' => count($profissional) > 0 ?
+                strip_tags($profissional->first()->nome) :
+                null,
+            'sus' => count($profissional) > 0 ?
+                strip_tags($profissional->first()->sus) :
+                null,
         ]);
 
     }
@@ -177,8 +250,7 @@ class VinculoController extends Controller
                     'carga_horaria' => $vinculo->carga_horaria,
                     'sus' => $vinculo->profissional->sus ? 'SIM' : 'NÃO',
                     'vinculacao' => $vinculo->vinculacao->nome ,
-                    'tipo' => $vinculo->tipo->tipo ,
-                    'subtipo' =>  $vinculo->tipo->subtipo,
+                    'tipo' => $vinculo->tipo->nome ,
                 ];
             }),
         ]);

@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
             ->name('tipos.select');
         Route::get('vinculacoes', 'VinculoController@selectVinculacoes')
             ->name('vinculacoes.select');
+        Route::get('profissionais', 'VinculoController@selectProfissionais')->name('api.profissionais');
     });
 
 });
