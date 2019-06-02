@@ -10,7 +10,26 @@ Aplicação Web Laravel para avaliação da Fase 2 do edital – LAIS/UFRN
 #### Banco de Dados:
 * [Sqlite](https://www.sqlite.org/index.html)
 
+### Requisitos do servidor
+
+Caso não tenha configurado um ambiente Laravel, será necessário instalar os seguintes requisitos:
+
+* PHP >= 7.1.3
+* BCMath PHP Extension
+* Ctype PHP Extension
+* JSON PHP Extension
+* Mbstring PHP Extension
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Tokenizer PHP Extension
+* XML PHP Extension
+
+* instalar o [Composer](https://getcomposer.org/download/)
+
 ### Como compilar o projeto
+
+Após ter as depêndências e o Composer instalados:
+
 ```
 cp .env.example .env
 ```
