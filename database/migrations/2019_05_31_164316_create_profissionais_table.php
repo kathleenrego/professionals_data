@@ -16,7 +16,7 @@ class CreateProfissionaisTable extends Migration
         Schema::create('profissionais', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
-            $table->string('cns');
+            $table->string('cns')->unique();
             $table->boolean('sus');
 
             $table->timestamps();
