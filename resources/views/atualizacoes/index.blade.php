@@ -46,8 +46,7 @@
 
 @section('content')
 
-    <form method="post" action="{{ url('/atualizar') }}">
-        {{csrf_field()}}
+i        {{csrf_field()}}
         <button onclick="$('#cover-spin').show(0)">Atualizar dados</button>
     </form>
 
