@@ -12,7 +12,8 @@
 
     <form method="post" action="{{ url('/atualizar') }}">
         {{csrf_field()}}
-        <input type="submit" name="update" id="update" class="btn btn-theme " value="Atualizar Dados" onclick="javascript:document.getElementById('blanket').style.display = 'block';document.getElementById('aguarde').style.display = 'block';">
+        <input type="submit" name="update" id="update" class="btn btn-theme " value="Atualizar Dados"
+               onclick="javascript:document.getElementById('blanket').style.display = 'block';document.getElementById('aguarde').style.display = 'block';">
     </form>
 
 @endsection

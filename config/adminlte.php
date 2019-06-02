@@ -116,27 +116,29 @@ return [
             'icon' => 'users',
         ],
         [
-            'text' => 'Cbos',
-            'url'  => '/cbos',
-            'icon' => 'stethoscope',
+            'text'    => 'Cadastros',
+            'icon'    => 'stethoscope',
+            'submenu' => [
+                [
+                    'text' => 'Cbos',
+                    'url'  => '/cbos',
+                ],
+                [
+                    'text' => 'Tipos',
+                    'url'  => '/tipos',
+                ],
+                [
+                    'text' => 'Vinculacoes',
+                    'url'  => '/vinculacoes',
+                ],
+                [
+                    'text' => 'Profissionais',
+                    'url'  => '/profissionais',
+                ],
+            ],
         ],
         [
-            'text' => 'Tipos',
-            'url'  => '/tipos',
-            'icon' => 'stethoscope',
-        ],
-        [
-            'text' => 'Vinculacoes',
-            'url'  => '/vinculacoes',
-            'icon' => 'stethoscope',
-        ],
-        [
-            'text' => 'Profissionais',
-            'url'  => '/profissionais',
-            'icon' => 'user-md',
-        ],
-        [
-            'text' => 'Inicadores',
+            'text' => 'Indicadores',
             'url'  => '/metas',
             'icon' => 'file',
         ],

@@ -36,8 +36,6 @@ class WebScraperTransformer
         }
         catch (ConnectException $e) {
 
-            libxml_use_internal_errors(true);
-
             $file = new Crawler(file_get_contents(database_path('data/Mod_Profissional.html')));
 
             $collection = collect([]);
