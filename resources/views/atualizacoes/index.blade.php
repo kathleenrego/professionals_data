@@ -48,7 +48,7 @@
 
     <form method="post" action="{{ url('/atualizar') }}">
         {{csrf_field()}}
-        <button onclick="$('#cover-spin').show(0)">Atualizar dados</button>
+        <button class="btn btn-primary btn-lg" onclick="$('#cover-spin').show(0)">Atualizar dados</button>
     </form>
 
     <div id="cover-spin"></div>
