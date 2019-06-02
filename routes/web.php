@@ -28,6 +28,8 @@ Route::delete('/destroy', 'VinculoController@destroyMutiple')
 Route::middleware('auth')->group(function () {
 
     Route::resource('vinculos', 'VinculoController');
+    Route::get('atualizacoes','AtualizacaoController@index')->name('atualizacoes');
+    Route::post('atualizar', 'AtualizacaoController@extractdata');
 
     Route::group(['prefix' => 'api'], function () {
         Route::get('vinculos', 'VinculoController@select')

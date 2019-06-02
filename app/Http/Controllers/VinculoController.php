@@ -52,7 +52,6 @@ class VinculoController extends Controller
             'carga_horaria' => 'required|numeric',
         ]);
 
-
         $profissional = Profissional::firstOrCreate(
             [   'cns' => $request->get('cns')],
             [
@@ -214,7 +213,6 @@ class VinculoController extends Controller
 
     }
 
-
     public function select(Request $request)
     {
         $q = $request->input('search.value', '');
@@ -266,5 +264,7 @@ class VinculoController extends Controller
         return redirect()->route('vinculos.index')
             ->with('success', 'Vínculos excluídos com sucesso!');
     }
+
+
 
 }

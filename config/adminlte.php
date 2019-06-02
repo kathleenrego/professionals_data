@@ -123,7 +123,7 @@ return [
         [
             'text' => 'Atualização',
             'icon' => 'cloud-download',
-            'url'  => 'solicitacoes',
+            'url'  => 'atualizacoes',
         ],
 
     ],
