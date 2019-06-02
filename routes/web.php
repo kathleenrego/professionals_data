@@ -28,20 +28,10 @@ Route::delete('/destroy', 'VinculoController@destroyMutiple')
 Route::middleware('auth')->group(function () {
 
     Route::resource('vinculos', 'VinculoController');
-    Route::resource('cbos', 'CboController');
-    Route::resource('vinculacoes', 'ViculacaoController');
-    Route::resource('tipos', 'TipoController');
-    Route::resource('profissionais', 'ProfissionalController');
 
     Route::group(['prefix' => 'api'], function () {
         Route::get('vinculos', 'VinculoController@select')
-            ->name('vinculos.json');
-        Route::get('json/cbos', 'CboController@select')
-            ->name('cbos.json');
-        Route::get('json/tipos', 'TipoController@select')
-            ->name('tipos.json');
-        Route::get('json/vinculacoes', 'ViculacaoController@select')
-            ->name('vinculacoes.json');
+            ->name('vinculos.select');
         Route::get('cbos', 'VinculoController@selectCbos')
             ->name('cbos.select');
         Route::get('tipos', 'VinculoController@selectTipos')
