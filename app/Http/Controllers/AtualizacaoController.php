@@ -16,7 +16,7 @@ class AtualizacaoController extends Controller
     public function extractdata()
     {
         (new WebScraperTransformer())->extract();
-        return redirect()->route('vinculos.index')
-            ->with('success', 'Vínculos excluídos com sucesso!');
+        return redirect()->route('atualizacoes')
+            ->with('success', 'Dados atualizados com sucesso!');
     }
 }

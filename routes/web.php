@@ -38,6 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'api'], function () {
         Route::get('vinculos', 'VinculoController@select')
             ->name('vinculos.json');
+        Route::get('json/vinculacoes', 'ViculacaoController@select')
+            ->name('vinculacoes.json');
+        Route::get('json/cbos', 'CboController@select')
+            ->name('cbos.json');
+        Route::get('json/tipos', 'TipoController@select')
+            ->name('tipos.json');
+        Route::get('json/profissionais', 'ProfissionalController@select')
+            ->name('profissionais.json');
         Route::get('cbos', 'VinculoController@selectCbos')
             ->name('cbos.select');
         Route::get('tipos', 'VinculoController@selectTipos')
