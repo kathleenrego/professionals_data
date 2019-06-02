@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profissional;
 use Illuminate\Http\Request;
 
 class ProfissionalController extends Controller
@@ -13,7 +14,7 @@ class ProfissionalController extends Controller
      */
     public function index()
     {
-        //
+        return view('profissionais.index');
     }
 
     /**
@@ -23,7 +24,7 @@ class ProfissionalController extends Controller
      */
     public function create()
     {
-        //
+        return view('profissionais.create');
     }
 
     /**
@@ -34,7 +35,21 @@ class ProfissionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required|max:256',
+            'cns' => 'required|numeric',
+            'sus' => 'required|numeric',
+        ]);
+
+        Profissional::firstOrCreate(
+            [   'cns' => $request->get('cns')],
+            [
+                'nome' => $request->get('nome'),
+                'sus' => $request->get('sus'),
+            ]);
+
+        return redirect()->route('profissionais.index')
+            ->with('success', 'Profissional criado com sucesso');
     }
 
     /**
@@ -56,7 +71,9 @@ class ProfissionalController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('profissionais.edit',[
+            'profissional' => Profissional::findOrFail($id),
+        ]);
     }
 
     /**
@@ -68,7 +85,20 @@ class ProfissionalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required|max:256',
+            'sus' => 'required|numeric',
+        ]);
+
+        $profissional = Profissional::findOrfail($id);
+
+        $profissional->update([
+            'nome' => $request->get('nome'),
+            'sus' => $request->get('sus'),
+            ]);
+
+        return redirect()->route('profissionais.index')
+            ->with('success', 'profissional editado com sucesso');
     }
 
     /**
@@ -79,6 +109,41 @@ class ProfissionalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $profissional = Profissional::findOrFail($id);
+
+        if(!count($profissional->vinculos)){
+            $profissional->delete();
+            return redirect()->route('profissionais.index')
+                ->with('success', 'profissional excluído com sucesso');
+        }
+
+        return redirect()->route('profissionais.index')
+            ->with('error', 'profissional não pode ser excluído pois existem vínculos que dependem dele');
+
+    }
+
+    public function select(Request $request)
+    {
+        $q = $request->input('search.value', '');
+
+        $data = Profissional::when(
+            $request->filled('search.value'), function ($query) use ($q) {
+            $query->where('nome', 'like', "%{$q}%")->orWhere('cns', 'like', "%{$q}%");
+
+        });
+
+        return response()->json([
+            'draw' => $request->get('draw'),
+            'recordsTotal' => Profissional::count(),
+            'recordsFiltered' => $data->get()->count(),
+            'data' => $data->skip($request->get('start'))->take($request->get('length'))->get()->map(function ($profissional) {
+                return [
+                    'id' => $profissional->id,
+                    'nome' => $profissional->nome,
+                    'cns' => $profissional->cns,
+                    'sus' => $profissional->sus ? 'SIM' : 'NÃO',
+                ];
+            }),
+        ]);
     }
 }
