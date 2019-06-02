@@ -116,6 +116,26 @@ return [
             'icon' => 'users',
         ],
         [
+            'text' => 'Cbos',
+            'url'  => '/cbos',
+            'icon' => 'stethoscope',
+        ],
+        [
+            'text' => 'Tipos',
+            'url'  => '/tipos',
+            'icon' => 'stethoscope',
+        ],
+        [
+            'text' => 'Vinculacoes',
+            'url'  => '/vinculacoes',
+            'icon' => 'stethoscope',
+        ],
+        [
+            'text' => 'Profissionais',
+            'url'  => '/profissionais',
+            'icon' => 'user-md',
+        ],
+        [
             'text' => 'Inicadores',
             'url'  => '/metas',
             'icon' => 'file',
