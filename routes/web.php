@@ -15,7 +15,6 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider')->name('login.provider');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
 
@@ -29,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('vinculos', 'VinculoController');
     Route::get('atualizacoes','AtualizacaoController@index')->name('atualizacoes');
+    Route::get('indicadores','IndicadorController@index')->name('indicadores');
     Route::post('atualizar', 'AtualizacaoController@extractdata');
     Route::resource('cbos', 'CboController');
     Route::resource('vinculacoes', 'ViculacaoController');

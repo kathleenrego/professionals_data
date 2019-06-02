@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <a href="{{ route('login.provider', 'google') }}"
-                           class="btn btn-default btn-block btn-flat">{{ __('Google Sign in') }}</a>
+                           class="btn btn-default btn-block btn-flat">Login Google</a>
                     </div>
                     <div class="col-xs-6">
                         <button type="submit"
