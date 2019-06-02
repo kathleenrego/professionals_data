@@ -139,8 +139,8 @@ return [
         ],
         [
             'text' => 'Indicadores',
-            'url'  => '/metas',
-            'icon' => 'file',
+            'url'  => '/indicadores',
+            'icon' => 'bar-chart',
         ],
         [
             'text' => 'Atualização',

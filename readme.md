@@ -59,7 +59,7 @@ A partir desse momento, você já pode acessar o projeto em
 
 * Extração dos dados por WebScraper com [GuzzleHttp](https://github.com/guzzle/guzzle)
 
-* Banco de Dados [Sqlite](https://www.sqlite.org/index.html) normalizado:
+* Banco de Dados [Sqlite](https://www.sqlite.org/index.html) normalizado
 
 *  AJAX/RESTful na apresentação dos dados com [DataTables](https://datatables.net/examples/index)
 
