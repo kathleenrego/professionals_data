@@ -59,7 +59,7 @@ class VinculoController extends Controller
                 'sus' => $request->get('sus'),
             ]);
 
-        Vinculo::query()->updateOrCreate(
+        $vinculo = Vinculo::query()->updateOrCreate(
             [
                 'profissional_id' => $profissional->id,
                 'tipo_id' => $request->get('tipo'),
@@ -70,6 +70,11 @@ class VinculoController extends Controller
                 'data_atribuicao' => Carbon::createFromFormat('d/m/Y', $request->get('data_atribuicao')),
             ]
         );
+
+        $profissional = $vinculo->profissional;
+
+        $profissional->carga_horaria_total = $profissional->vinculos->sum('carga_horaria');
+        $profissional->save();
 
         return Redirect::route('vinculos.index')
             ->with('success', 'O vínculo foi criado com sucesso.');
@@ -132,6 +137,12 @@ class VinculoController extends Controller
                 'data_atribuicao' => Carbon::createFromFormat('d/m/Y', $request->get('data_atribuicao')),
             ]
         );
+
+
+        $profissional = $vinculo->profissional;
+
+        $profissional->carga_horaria_total = $profissional->vinculos->sum('carga_horaria');
+        $profissional->save();
 
         return Redirect::route('vinculos.index')
             ->with('success', 'O vínculo foi editado com sucesso.');

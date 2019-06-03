@@ -30,6 +30,11 @@ Caso não tenha configurado um ambiente Laravel, será necessário instalar os s
 
 Após ter as depêndências e o Composer instalados:
 
+
+```
+sudo apt install php7-sqlite3
+sudo apt install php-curl
+```
 ```
 cp .env.example .env
 ```

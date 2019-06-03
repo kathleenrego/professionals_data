@@ -19,7 +19,7 @@ class Profissional extends Model
      * @var array
      */
     protected $fillable = [
-        'nome', 'cns', 'sus',
+        'nome', 'cns', 'sus', 'carga_horaria_total',
     ];
 
     /**

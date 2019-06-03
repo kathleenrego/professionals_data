@@ -50,5 +50,10 @@ class VinculosImport
             );
 
         }
+
+        Profissional::all()->each(function ($query){
+            $query->carga_horaria_total = $query->vinculos->sum('carga_horaria');
+            $query->save();
+        });
     }
 }
