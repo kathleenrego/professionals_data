@@ -58,7 +58,7 @@
                         render: function (data) {
                             return "<div class=\"btn-group-vertical\">\n" +
                                 "<a href=\"/cbos/" + data + "/edit\" class=\"btn btn-warning\" style=\"margin-top: 10px;\">Editar</a>\n" +
-                                "                <form style=\"border-radius: 0;margin-top: 10px;display: inline-block;\" class=\"btn-group\" action=\"/cbos/" + data + "\" method=\"post\">\n" +
+                                "                <form style=\"border-radius: 0;margin-top: 10px;display: inline-block;\" class=\"btn-group\" onclick=\"return confirm('Você tem certeza que deseja excluir esse CBO?');\" action=\"/cbos/" + data + "\" method=\"post\">\n" +
                                 "                   {!! addslashes(csrf_field()) !!}" +
                                 "                   {!! addslashes(method_field('DELETE')) !!}" +
                                 "                <button type=\"submit\" class=\"btn btn-danger\" >Excluir</button>\n" +

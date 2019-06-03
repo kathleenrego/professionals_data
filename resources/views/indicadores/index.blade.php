@@ -77,7 +77,7 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-
+    @if(count(\App\Models\Vinculo::all()))
     <div class="row">
         <div class="col-xs-6">
             <div class="box box-warning">
@@ -104,6 +104,7 @@
             </div>
         </div>
     </div>
+    @endif
 @endsection
 @section('js')
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -114,27 +115,57 @@
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script>
+        let cargas_horarias = []
+
+        JSON.parse('{!! $profissionais !!}').forEach(function (keyValue) {
+            if(keyValue != null) cargas_horarias.push(Object.values(keyValue));
+        });
+
+        let mappedX = [];
+        let mappedY = [];
+
+        JSON.parse('{!! $profissionais !!}').forEach(function (keyValue) {
+            if(keyValue != null){
+                mappedX.push(keyValue.carga_horaria);
+                mappedY.push(keyValue.total);
+            }
+        });
+
+
         var chart = Highcharts.chart('container', {
 
             title: {
-                text: 'Chart.update'
+                text: 'Carga Horária dos Profissionais'
             },
-
-            subtitle: {
-                text: 'Plain'
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'Profissionais'
+                },
             },
-
             xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                allowDecimals: false,
+                title: {
+                    text: 'Carga Horária Semanal'
+                },
+                categories: mappedX,
             },
-
+            colors: [ '#1aadce',
+                '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'],
             series: [{
                 type: 'column',
                 colorByPoint: true,
-                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+                name: 'Profissionais',
+                data: cargas_horarias,
                 showInLegend: false
-            }]
+            }],
 
+        });
+
+        let vinculacoes = [];
+
+        JSON.parse('{!! $vinculacoes !!}').forEach(function (keyValue) {
+            vinculacoes.push(Object.values(keyValue));
         });
 
         Highcharts.chart('container2', {
@@ -146,10 +177,7 @@
                 }
             },
             title: {
-                text: 'Contents of Highsoft\'s weekly fruit delivery'
-            },
-            subtitle: {
-                text: '3D donut in Highcharts'
+                text: 'Vinculações'
             },
             plotOptions: {
                 pie: {
@@ -157,19 +185,11 @@
                     depth: 45
                 }
             },
+            colors: [
+                '#77a1e5','#492970','#f28f43', '#c42525', '#a6c96a'],
             series: [{
-                name: 'Delivered amount',
-                data: [
-                    ['Bananas', 8],
-                    ['Kiwi', 3],
-                    ['Mixed nuts', 1],
-                    ['Oranges', 6],
-                    ['Apples', 8],
-                    ['Pears', 4],
-                    ['Clementines', 4],
-                    ['Reddish (bag)', 1],
-                    ['Grapes (bunch)', 1]
-                ]
+                name: 'Profissionais',
+                data: vinculacoes,
             }]
         });
     </script>
