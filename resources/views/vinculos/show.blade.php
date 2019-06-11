@@ -26,7 +26,7 @@
                         </tr>
                         <tr>
                             <th class="col-md-2">Data Atribuição </th>
-                            <td>{{ $vinculo->data_atribuicao }}</td>
+                            <td>{{ $vinculo->data_atribuicao->format('d/m/Y') }}</td>
                         </tr>
                         <tr>
                             <th class="col-md-2">CBO</th>
